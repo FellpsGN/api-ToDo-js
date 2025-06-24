@@ -23,7 +23,7 @@ class UsersController {
 
     async update(req, res) {
         const { user_name, user_email, user_pass, old_pass } = req.body
-        const { user_id } = req.params
+        const user_id = req.user.user_id
 
         const [user] = await knex("users").where({ user_id })
 
@@ -61,13 +61,6 @@ class UsersController {
         })
 
         return res.status(204).json()
-    }
-
-    async index(req, res) {
-        const { user_id } = req.params
-        const [user] = await knex("users").where({user_id})
-
-        return res.status(200).json(user)
     }
 }
 

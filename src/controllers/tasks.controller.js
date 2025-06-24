@@ -4,7 +4,7 @@ const AppError = require("../utils/AppError.js")
 class TasksController {
     async create(req, res) {
         const { task_title, task_description } = req.body
-        const { user_id } = req.params
+        const user_id = req.user.user_id
 
         if(!task_title || task_title === " ") {
             throw new AppError("Task title required")
@@ -21,7 +21,8 @@ class TasksController {
 
     async update(req, res) {
         const { task_title, task_description, task_done } = req.body
-        const { task_id, user_id } = req.params
+        const { task_id } = req.params
+        const user_id = req.user.user_id
 
         const [task] = await knex("tasks").where({task_id})
         const [user] = await knex("users").where({user_id})
@@ -52,7 +53,7 @@ class TasksController {
     }
 
     async show(req, res) {
-        const { user_id } = req.params
+        const user_id = req.user.user_id
 
         if(!user_id) {
             throw new AppError("User Id required")
@@ -64,7 +65,9 @@ class TasksController {
     }
 
     async getByLike(req, res) {
-        const { user_id, title } = req.query
+        const { title } = req.query
+        const user_id = req.user.user_id
+
         let tasks
 
         if(title) {
@@ -80,8 +83,9 @@ class TasksController {
 
     async delete(req, res) {
         const { task_id } = req.params
+        const user_id = req.user.user_id
 
-        const [doesTaskExists] = await knex("tasks").where({task_id})
+        const [doesTaskExists] = await knex("tasks").where({task_id, user_id})
 
         if(!doesTaskExists) {
             throw new AppError("Task not found")
