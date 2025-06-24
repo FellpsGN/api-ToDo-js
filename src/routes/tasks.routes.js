@@ -6,5 +6,7 @@ const tasksController = new TasksController()
 
 tasksRouter.post("/:user_id", tasksController.create)
 tasksRouter.get("/:user_id", tasksController.show)
+tasksRouter.put("/:task_id", tasksController.update)
+tasksRouter.delete("/:task_id", tasksController.delete)
 
 module.exports = tasksRouter 
