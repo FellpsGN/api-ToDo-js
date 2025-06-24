@@ -1,0 +1,108 @@
+# 📝 To Do API
+
+A RESTful API for managing **users**, **tasks** — built with **Node.js**, **Express** and **SQLite3**, using **Knex.js** for database manipulation.
+
+---
+
+## 🚀 Features
+
+- Create users
+- Create tasks with associated user
+- Get tasks by user
+- Filter tasks by title and done or not done
+- Delete tasks
+
+---
+
+## 🧠 Data Model (ER Diagram)
+
+> Relational structure between `users` and `tasks`:
+
+![MER](./.github/mer.png)
+
+---
+
+## 📦 Technologies Used
+
+- Node.js
+- Express.js
+- SQLite3
+- Knex.js
+- JWT
+
+---
+
+## 📁 Project Structure
+
+```bash
+├── knexfile.js
+├── package.json
+├── package-lock.json
+├── README.mkd
+├── .gitignore
+├── .npmrc
+├── src
+│   ├── controllers
+│   │   ├── users.controller.js
+│   │   └── tasks.controller.js
+│   ├── database
+│   │   └── knex
+│   │       ├── migrations
+│   │       └── index.js
+│   ├── routes
+│   │   ├── users.routes.js
+│   │   └── tasks.routes.js
+│   ├── utils
+│   │   └── AppError.js
+│   └── server.js
+```
+
+# 📌 API Endpoints
+
+## 🧑‍💻 Users
+
+- POST - `/users` | Create User
+```json
+{
+    "name": "Davy Jones",
+    "email": "davy.jones@email.com",
+    "password": "12345"
+}
+```
+
+- PUT  - `/users` | Update User (name & email)
+```json
+{
+    "name": "Jack Sparrow",
+    "email": "jack.sparrow@email.com"
+}
+```
+
+- PUT  - `/users` | Update User (name & email & password)
+```json
+{
+    "name": "Jack Sparrow",
+    "email": "jack.sparrow@email.com",
+    "password": "1234",
+    "old_password": "123" 
+}
+```
+
+## 🗒️ Tasks
+- POST - `/tasks` | Create task By User ID
+```json
+{
+    "task_title": "Task Title Example",
+    "task_description": "This task exists just to show the json format to create a task."
+}
+```
+
+- GET - `/tasks` | Get Tasks By User
+- GET - `/tasks` | Get Tasks By User Using Clausule LIKE
+
+- PUT - `/tasks/:task_id` | Update Task
+
+- DELETE - `/:task_id` | Delete Task By ID
+
+# 🧪 Tests
+You can test the routes using Postman, Insomnia, or another HTTP client.
