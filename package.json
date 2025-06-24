@@ -1,0 +1,31 @@
+{
+  "name": "api-todo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon ./src/server.js",
+    "migrate": "knex migrate:latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FellpsGN/api-ToDo-js.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FellpsGN/api-ToDo-js/issues"
+  },
+  "homepage": "https://github.com/FellpsGN/api-ToDo-js#readme",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "3.0.2",
+    "express": "4.16.2",
+    "express-async-errors": "3.1.1",
+    "knex": "3.1.0",
+    "sqlite3": "5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "3.1.10"
+  }
+}
