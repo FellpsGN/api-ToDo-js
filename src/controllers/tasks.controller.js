@@ -63,6 +63,21 @@ class TasksController {
         return res.status(200).json(tasks)
     }
 
+    async getByLike(req, res) {
+        const { user_id, title } = req.query
+        let tasks
+
+        if(title) {
+            tasks = await knex("tasks").where({ user_id }).whereLike("task_title", `%${title}%`)
+        }
+
+        const [tasksLikeTitle] = tasks.map(task => {
+            return {...task}
+        })
+
+        return res.status(200).json(tasksLikeTitle)
+    }
+
     async delete(req, res) {
         const { task_id } = req.params
 
