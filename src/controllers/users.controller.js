@@ -64,7 +64,8 @@ class UsersController {
     }
 
     async index(req, res) {
-        const [user] = await knex("users")
+        const { user_id } = req.params
+        const [user] = await knex("users").where({user_id})
 
         return res.status(200).json(user)
     }

@@ -5,7 +5,7 @@ const usersRouter = Router()
 const usersController = new UsersController()
 
 usersRouter.post("/", usersController.create)
-usersRouter.get("/", usersController.index)
+usersRouter.get("/:user_id", usersController.index)
 usersRouter.put("/:user_id", usersController.update)
 
 module.exports = usersRouter
